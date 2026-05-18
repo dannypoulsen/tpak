@@ -1,0 +1,15 @@
+// Run this when the page loads
+window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const authCode = urlParams.get('code');
+
+    if (authCode) {
+        console.log("Authorization code successfully captured:", authCode);
+        
+        // Clean up the URL so the user doesn't see the ugly code string
+        window.history.replaceState({}, document.title, window.location.pathname);
+
+        // Next step: Exchange this code for an actual access token
+        exchangeCodeForToken(authCode);
+    }
+});
